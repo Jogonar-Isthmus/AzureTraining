@@ -1,0 +1,44 @@
+﻿@model IList<BibliotecaMusical.Models.BlobModel>
+
+@{
+	ViewBag.Title = "Library";
+}
+
+<h2>List of Files</h2>
+
+<form method="post" action="Library/SaveFile" enctype="multipart/form-data">
+	<div class="form-group">
+		<input type="file" name="file" />
+	</div>
+
+	<button type="submit" class="btn btn-success">Upload File</button>
+</form>
+
+<br />
+
+<div class="table-responsive">
+	<table class="table table-striped table-bordered table-hover table-condensed">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Size</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var file in Model) {
+				<tr>
+					<td>@file.Name</td>
+					<td>@file.Size</td>
+					<td>
+						<button class="btn btn-danger" type="button" id="deleteFile">
+							<i class="fas fa-trash-alt"></i> Delete
+						</button>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>
+
+@Model.Count File(s)

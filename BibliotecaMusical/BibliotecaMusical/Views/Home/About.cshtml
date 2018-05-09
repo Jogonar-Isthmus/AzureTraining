@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+<h2>Azure Training Project</h2>
+
+<h3>Especificaciones de usuario</h3>
+<p>La aplicación administrará una biblioteca musical. Se tendrán disponibles las siguientes características:</p>
+<ol>
+	<li>Deberá permitir crear una cuenta con un correo, nombre, password.</li>
+	<li>Como usuario de la aplicación puedo iniciar sesión usando el correo y password.</li>
+	<li>Al ingresar a la aplicación el usuario podrá:
+		<ol type="a">
+			<li>Ver una lista de archivos .mp3.</li>
+			<li>Reproducir cualquiera de los archivos .mp3 en la lista.</li>
+			<li>Agregar archivos .mp3 con un nombre de canción.</li>
+			<li>Borrar archivos .mp3.</li>
+			<li>El usuario podrá cerrar la sesión.</li>
+		</ol>
+	</li>
+	<li>La aplicación necesitará guardar información de las acciones de los usuarios:</li>
+	<li>Cuando se agregue un nuevo archivo .mp3.</li>
+	<li>Cuando se elimine un archivo .mp3 existente.</li>
+</ol>
+
+<h3>Especificaciones técnicas</h3>
+<ol>
+	<li>Para el almacenamiento de los usuarios se requiere usar Azure Tables (no-sql), así como el estado del usuario:
+		<ol type="a">
+			<li>Activo: cuando el usuario inicia sesión.</li>
+			<li>Inactivo: cuando el usuario cierra sesión.</li>
+		</ol>
+	</li>
+	<li>Para el almacenamiento de los archivos .mp3 se requiere usar Blob Containers.</li>
+	<li>Para eliminar un archivo .mp3 se requiere insertar un mensaje en un queue y posteriormente un WebJob estará a la escucha y procesará el mensaje. El mensaje contendrá el nombre del archivo que tiene que ir a eliminar del Blob Container.</li>
+	<li>Para guardar el registro de carga de un archivo .mp3 se requiere el uso de un WebJob.</li>
+	<li>Para guardar los registros de las acciones de los usuarios se requiere usar un Blob Container o Azure Table.</li>
+</ol>
+
+<h3>Entregables</h3>
+<div class="table-responsive">
+	<table class="table table-striped table-bordered table-condensed">
+		<thead>
+			<tr>
+				<th>Fecha</th>
+				<th>Progreso</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>05/09/18</td>
+				<td>UI: Pantalla de iniciar sesión, Pantalla de administrar y listar archivos .mp3. Sin lógica, solo el template.</td>
+			</tr>
+			<tr>
+				<td>05/16/18</td>
+				<td>Conectividad: Agregar, listar y eliminar archivos de un Blob Container. Agregar, listar y eliminar registros de un Azure Table.</td>
+			</tr>
+			<tr>
+				<td>05/30/18</td>
+				<td>Servicios: WebJob y sistema completado al 100%</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
