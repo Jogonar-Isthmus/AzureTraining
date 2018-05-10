@@ -31,9 +31,9 @@
 					<td>@file.Name</td>
 					<td>@file.Size</td>
 					<td>
-						<button class="btn btn-danger" type="button" id="deleteFile">
+						<a class="btn btn-danger" href="@Url.Action("Delete", "Storage", new { fileName = file.Name })">
 							<i class="fas fa-trash-alt"></i> Delete
-						</button>
+						</a>
 					</td>
 				</tr>
 			}

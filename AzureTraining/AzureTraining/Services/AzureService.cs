@@ -37,5 +37,9 @@ namespace AzureTraining.Services {
 
 			return blobs;
 		}
+
+		public void DeleteBlobByName(string fileName) {
+			GetBlobContainer().GetBlockBlobReference(fileName).DeleteIfExists();
+		}
 	}
 }

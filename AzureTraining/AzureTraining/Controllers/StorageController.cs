@@ -67,9 +67,12 @@ namespace AzureTraining.Controllers {
 			}
 		}
 
-		// GET: Storage/Delete/5
-		public ActionResult Delete(int id) {
-			return View();
+		// GET: Storage/Delete/<fileName>
+		[HttpGet]
+		public ActionResult Delete(string fileName) {
+			_azureService.DeleteBlobByName(fileName);
+
+			return RedirectToAction("Blobs");
 		}
 
 		// POST: Storage/Delete/5
@@ -78,7 +81,7 @@ namespace AzureTraining.Controllers {
 			try {
 				// TODO: Add delete logic here
 
-				return RedirectToAction("Index");
+				return RedirectToAction("Blobs");
 			} catch {
 				return View();
 			}
