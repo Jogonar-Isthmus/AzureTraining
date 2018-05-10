@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using AzureTraining.Models;
@@ -29,7 +30,8 @@ namespace AzureTraining.Services {
 			var blobs = GetBlobContainer().ListBlobs(useFlatBlobListing: true)
 				.OfType<CloudBlockBlob>()
 				.Select(b => new BlobModel {
-					Name = b.Name
+					Name = b.Name,
+					Size = Convert.ToDecimal((double)b.Properties.Length / 1024 / 1024).ToString("#,##0.00")
 				})
 				.ToList();
 
