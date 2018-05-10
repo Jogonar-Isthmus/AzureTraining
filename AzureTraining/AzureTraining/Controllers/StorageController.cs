@@ -12,7 +12,7 @@ namespace AzureTraining.Controllers {
 		}
 
 		// GET: Storage
-		public ActionResult Index() {
+		public ActionResult Blobs() {
 			var blobs = _azureService.GetFileList();
 			return View(blobs);
 		}
@@ -25,7 +25,7 @@ namespace AzureTraining.Controllers {
 				_azureService.SaveFileToBlob(fileName, file.InputStream);
 			}
 
-			return RedirectToAction("Index");
+			return RedirectToAction("Blobs");
 		}
 
 		// GET: Storage/Details/5
