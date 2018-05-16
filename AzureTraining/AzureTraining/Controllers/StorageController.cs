@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Web;
 using System.Web.Mvc;
+using AzureTraining.Models;
 using AzureTraining.Services;
 
 namespace AzureTraining.Controllers {
@@ -27,46 +28,7 @@ namespace AzureTraining.Controllers {
 
 			return RedirectToAction("Blobs");
 		}
-
-		// GET: Storage/Details/5
-		public ActionResult Details(int id) {
-			return View();
-		}
-
-		// GET: Storage/Create
-		public ActionResult Create() {
-			return View();
-		}
-
-		// POST: Storage/Create
-		[HttpPost]
-		public ActionResult Create(FormCollection collection) {
-			try {
-				// TODO: Add insert logic here
-
-				return RedirectToAction("Index");
-			} catch {
-				return View();
-			}
-		}
-
-		// GET: Storage/Edit/5
-		public ActionResult Edit(int id) {
-			return View();
-		}
-
-		// POST: Storage/Edit/5
-		[HttpPost]
-		public ActionResult Edit(int id, FormCollection collection) {
-			try {
-				// TODO: Add update logic here
-
-				return RedirectToAction("Index");
-			} catch {
-				return View();
-			}
-		}
-
+		
 		// GET: Storage/Delete/<fileName>
 		[HttpGet]
 		public ActionResult Delete(string fileName) {
@@ -75,16 +37,18 @@ namespace AzureTraining.Controllers {
 			return RedirectToAction("Blobs");
 		}
 
-		// POST: Storage/Delete/5
-		[HttpPost]
-		public ActionResult Delete(int id, FormCollection collection) {
-			try {
-				// TODO: Add delete logic here
+		// GET: Storage/Tables
+		[HttpGet]
+		public ActionResult Tables() {
+			return View();
+		}
 
-				return RedirectToAction("Blobs");
-			} catch {
-				return View();
-			}
+		// POST: Storage/Tables
+		[HttpPost]
+		public ActionResult Tables(TaskModel task) {
+			_azureService.SaveTaskToTable(task);
+
+			return RedirectToAction("Tables");
 		}
 	}
 }

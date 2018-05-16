@@ -6,10 +6,12 @@ using BibliotecaMusical.Models;
 using Microsoft.Azure;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
+using Microsoft.WindowsAzure.Storage.Table;
 
 namespace BibliotecaMusical.Services {
 	public class AzureService {
 		private const string CONTAINER_NAME = "bibliotecamusical";
+		private const string TABLE_NAME = "users";
 
 		private CloudBlobContainer GetBlobContainer() {
 			var connectionString = CloudConfigurationManager.GetSetting("StorageConnectionString");
@@ -36,6 +38,37 @@ namespace BibliotecaMusical.Services {
 				.ToList();
 
 			return blobs;
+		}
+
+		public void DeleteBlobByName(string fileName) {
+			GetBlobContainer().GetBlockBlobReference(fileName).DeleteIfExists();
+		}
+
+		private CloudTable GetTable(string tableName) {
+			var connectionString = CloudConfigurationManager.GetSetting("StorageConnectionString");
+			var cloudStorageAccount = CloudStorageAccount.Parse(connectionString);
+
+			var cloudTableClient = cloudStorageAccount.CreateCloudTableClient();
+			var cloudTable = cloudTableClient.GetTableReference(tableName);
+			cloudTable.CreateIfNotExists();
+
+			return cloudTable;
+		}
+
+		public void SaveUserToTable(UserModel user) {
+			user.CreatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
+
+			var cloudTable = GetTable(TABLE_NAME);
+			TableOperation insertOperation = TableOperation.Insert(user);
+			cloudTable.Execute(insertOperation);
+		}
+
+		public List<UserModel> GetTableList() {
+			var cloudTable = GetTable(TABLE_NAME);
+			//TableQuery<Task> query = new TableQuery<Task>():
+			//cloudTable.Execute(selectOperation);
+
+			return null;
 		}
 	}
 }

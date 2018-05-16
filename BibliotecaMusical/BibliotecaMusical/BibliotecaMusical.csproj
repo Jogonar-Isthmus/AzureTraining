@@ -241,6 +241,7 @@
     <Compile Include="Models\BlobModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AzureService.cs" />
     <Compile Include="Startup.cs" />
