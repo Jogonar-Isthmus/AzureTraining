@@ -6,12 +6,14 @@ using AzureTraining.Models;
 using Microsoft.Azure;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
+using Microsoft.WindowsAzure.Storage.Queue;
 using Microsoft.WindowsAzure.Storage.Table;
 
 namespace AzureTraining.Services {
 	public class AzureService {
 		private const string CONTAINER_NAME = "filecontainer";
 		private const string TABLE_NAME = "tasks";
+		private const string QUEUE_NAME = "messages";
 
 		private CloudBlobContainer GetBlobContainer() {
 			var connectionString = CloudConfigurationManager.GetSetting("StorageConnectionString");
@@ -55,6 +57,17 @@ namespace AzureTraining.Services {
 			return cloudTable;
 		}
 
+		private CloudQueue GetQueue(string queueName) {
+			var connectionString = CloudConfigurationManager.GetSetting("StorageConnectionString");
+			var cloudStorageAccount = CloudStorageAccount.Parse(connectionString);
+
+			var cloudQueueClient = cloudStorageAccount.CreateCloudQueueClient();
+			var cloudQueue = cloudQueueClient.GetQueueReference(queueName);
+			cloudQueue.CreateIfNotExists();
+
+			return cloudQueue;
+		}
+
 		public void SaveTaskToTable(TaskModel task) {
 			task.CreatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
 
@@ -71,6 +84,32 @@ namespace AzureTraining.Services {
 			tasks = cloudTable.ExecuteQuery(query).ToList();
 			
 			return tasks;
+		}
+
+		public void SaveMessageToQueue(string message) {
+			var cloudQueue = GetQueue(QUEUE_NAME);
+
+			var cloudQueueMessage = new CloudQueueMessage(message);
+			cloudQueue.AddMessage(cloudQueueMessage);
+		}
+
+		public List<string> GetMessageList() {
+			var messages = new List<string>();
+
+			var cloudQueue = GetQueue(QUEUE_NAME);
+			cloudQueue.FetchAttributes();
+			var amount = cloudQueue.ApproximateMessageCount;
+			
+			if(amount.HasValue && amount.Value> 0) {
+				amount = amount <= 32 ? amount : 32;
+				messages = cloudQueue
+					.GetMessages(amount.Value, TimeSpan.FromSeconds(1))
+					.OrderByDescending(m => m.InsertionTime)
+					.Select(m => m.AsString)
+					.ToList();
+			}
+			
+			return messages;
 		}
 	}
 }

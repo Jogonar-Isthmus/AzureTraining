@@ -51,5 +51,20 @@ namespace AzureTraining.Controllers {
 
 			return RedirectToAction("Tables");
 		}
+
+		// GET: Storage/Queues
+		[HttpGet]
+		public ActionResult Queues() {
+			var messages = _azureService.GetMessageList();
+			return View(messages);
+		}
+
+		// POST: Storage/Queues
+		[HttpPost]
+		public ActionResult Queues(string message) {
+			_azureService.SaveMessageToQueue(message);
+
+			return RedirectToAction("Queues");
+		}
 	}
 }
