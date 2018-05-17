@@ -63,12 +63,14 @@ namespace AzureTraining.Services {
 			cloudTable.Execute(insertOperation);
 		}
 
-		public List<TaskModel> GetTableList() {
+		public List<TaskModel> GetTaskList() {
+			var tasks = new List<TaskModel>();
+
 			var cloudTable = GetTable(TABLE_NAME);
-			//TableQuery<Task> query = new TableQuery<Task>():
-			//cloudTable.Execute(selectOperation);
+			TableQuery<TaskModel> query = new TableQuery<TaskModel>();
+			tasks = cloudTable.ExecuteQuery(query).ToList();
 			
-			return null;
+			return tasks;
 		}
 	}
 }

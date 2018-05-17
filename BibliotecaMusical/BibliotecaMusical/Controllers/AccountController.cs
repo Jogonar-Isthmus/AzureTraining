@@ -68,7 +68,7 @@ namespace BibliotecaMusical.Controllers {
 				FormsAuthentication.SetAuthCookie(model.Email, false);
 				return RedirectToAction("Index", "Home");
 			} else {
-				ViewBag["Message"] = "Login not found.";
+				ViewBag.Message = "Login not found.";
 				return View();
 			}
 		}

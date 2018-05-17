@@ -67,22 +67,17 @@ namespace BibliotecaMusical.Services {
 
 		public bool CheckLoginUser(UserModel user) {
 			var cloudTable = GetTable(USER_TABLE_NAME);
-			TableQuery<UserModel> query = new TableQuery<UserModel>();
+			var query = new TableQuery<UserModel>()
+				.Where(TableQuery.CombineFilters(
+					TableQuery.GenerateFilterCondition("Email", QueryComparisons.Equal, user.Email),
+					TableOperators.And,
+					TableQuery.GenerateFilterCondition("Password", QueryComparisons.Equal, user.Password)
+				));
 
-			var userChecksOut = query
-				.Where(usr => usr.Email == user.Email)
-				.Where(usr => usr.Password == user.Password)
-				.Any();
+			var queryResults = cloudTable.ExecuteQuery(query);
+			var userChecksOut = queryResults.Any();
 
 			return userChecksOut;
-		}
-
-		public List<UserModel> GetTableList() {
-			var cloudTable = GetTable(USER_TABLE_NAME);
-			//TableQuery<Task> query = new TableQuery<Task>():
-			//cloudTable.Execute(selectOperation);
-
-			return null;
 		}
 	}
 }

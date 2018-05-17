@@ -3,7 +3,7 @@
 	using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" })) {
 		@Html.AntiForgeryToken()
 
-		@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "dropdown-item" })
+		@*@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "dropdown-item" })*@
 		<a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
 	}
 } else {

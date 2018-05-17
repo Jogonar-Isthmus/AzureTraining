@@ -40,7 +40,8 @@ namespace AzureTraining.Controllers {
 		// GET: Storage/Tables
 		[HttpGet]
 		public ActionResult Tables() {
-			return View();
+			var tasks = _azureService.GetTaskList();
+			return View(tasks);
 		}
 
 		// POST: Storage/Tables
