@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using BibliotecaMusical.Services;
 
 namespace BibliotecaMusical.Controllers {
+	[Authorize]
 	public class LibraryController : Controller {
 		private AzureService _azureService;
 
