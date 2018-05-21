@@ -32,8 +32,8 @@ namespace BibliotecaMusical.Services {
 
 		public static byte[] GetFileData(string fileName) {
 			byte[] fileData = null;
-			var blob = AzureService.GetBlob(CONTAINER_NAME, fileName);
-			blob.DownloadToByteArray(fileData, 0);
+			var file = AzureService.GetBlob(CONTAINER_NAME, fileName);
+			file.DownloadToByteArray(fileData, 0);
 
 			return fileData;
 		}
