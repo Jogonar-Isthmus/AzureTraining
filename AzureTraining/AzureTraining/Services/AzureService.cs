@@ -46,6 +46,7 @@ namespace AzureTraining.Services {
 			GetBlobContainer().GetBlockBlobReference(fileName).DeleteIfExists();
 		}
 
+
 		private CloudTable GetTable(string tableName) {
 			var connectionString = CloudConfigurationManager.GetSetting("StorageConnectionString");
 			var cloudStorageAccount = CloudStorageAccount.Parse(connectionString);
@@ -55,17 +56,6 @@ namespace AzureTraining.Services {
 			cloudTable.CreateIfNotExists();
 
 			return cloudTable;
-		}
-
-		private CloudQueue GetQueue(string queueName) {
-			var connectionString = CloudConfigurationManager.GetSetting("StorageConnectionString");
-			var cloudStorageAccount = CloudStorageAccount.Parse(connectionString);
-
-			var cloudQueueClient = cloudStorageAccount.CreateCloudQueueClient();
-			var cloudQueue = cloudQueueClient.GetQueueReference(queueName);
-			cloudQueue.CreateIfNotExists();
-
-			return cloudQueue;
 		}
 
 		public void SaveTaskToTable(TaskModel task) {
@@ -82,8 +72,32 @@ namespace AzureTraining.Services {
 			var cloudTable = GetTable(TABLE_NAME);
 			TableQuery<TaskModel> query = new TableQuery<TaskModel>();
 			tasks = cloudTable.ExecuteQuery(query).ToList();
-			
+
+			//var query = new TableQuery<UserModel>()
+			//	.Where(TableQuery.CombineFilters(
+			//		TableQuery.GenerateFilterCondition("Email", QueryComparisons.Equal, user.Email),
+			//		TableOperators.And,
+			//		TableQuery.GenerateFilterCondition("Password", QueryComparisons.Equal, user.Password)
+			//	));
+
+			//var queryResults = AzureService.GetQueryResults(USER_TABLE_NAME, query);
+			//var userChecksOut = queryResults.Any();
+
+			//return userChecksOut;
+
 			return tasks;
+		}
+
+
+		private CloudQueue GetQueue(string queueName) {
+			var connectionString = CloudConfigurationManager.GetSetting("StorageConnectionString");
+			var cloudStorageAccount = CloudStorageAccount.Parse(connectionString);
+
+			var cloudQueueClient = cloudStorageAccount.CreateCloudQueueClient();
+			var cloudQueue = cloudQueueClient.GetQueueReference(queueName);
+			cloudQueue.CreateIfNotExists();
+
+			return cloudQueue;
 		}
 
 		public void SaveMessageToQueue(string message) {

@@ -12,7 +12,7 @@ namespace AzureTraining.Controllers {
 			_azureService = new AzureService();
 		}
 
-		// GET: Storage
+		// GET: Storage/Blobs
 		public ActionResult Blobs() {
 			var blobs = _azureService.GetFileList();
 			return View(blobs);

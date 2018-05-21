@@ -2,49 +2,54 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using BibliotecaMusical.Models;
 using Microsoft.Azure;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
+using Microsoft.WindowsAzure.Storage.Queue;
 using Microsoft.WindowsAzure.Storage.Table;
 
 namespace BibliotecaMusical.Services {
-	public class AzureService {
-		private const string CONTAINER_NAME = "bibliotecamusical";
-		private const string USER_TABLE_NAME = "users";
+	public static class AzureService {
+		#region Blob Container
 
-		private CloudBlobContainer GetBlobContainer() {
+		private static CloudBlobContainer GetBlobContainer(string containerName) {
 			var connectionString = CloudConfigurationManager.GetSetting("StorageConnectionString");
 			var cloudStorageAccount = CloudStorageAccount.Parse(connectionString);
 
 			var cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
-			var cloudBlobContainer = cloudBlobClient.GetContainerReference(CONTAINER_NAME);
+			var cloudBlobContainer = cloudBlobClient.GetContainerReference(containerName);
 
 			return cloudBlobContainer;
 		}
 
-		public void SaveFileToBlob(string fileName, Stream stream) {
-			var blob = GetBlobContainer().GetBlockBlobReference(fileName);
-			blob.UploadFromStream(stream);
-		}
-
-		public List<BlobModel> GetFileList() {
-			var blobs = GetBlobContainer().ListBlobs(useFlatBlobListing: true)
-				.OfType<CloudBlockBlob>()
-				.Select(b => new BlobModel {
-					Name = b.Name,
-					Size = Convert.ToDecimal((double)b.Properties.Length / 1024 / 1024).ToString("#,##0.00")
-				})
-				.ToList();
+		public static IEnumerable<CloudBlockBlob> GetBlobList(string containerName) {
+			var blobs = GetBlobContainer(containerName)
+				.ListBlobs(useFlatBlobListing: true)
+				.OfType<CloudBlockBlob>();
 
 			return blobs;
 		}
 
-		public void DeleteBlobByName(string fileName) {
-			GetBlobContainer().GetBlockBlobReference(fileName).DeleteIfExists();
+		public static CloudBlockBlob GetBlob(string containerName, string blobName) {
+			var blob = GetBlobContainer(containerName).GetBlockBlobReference(blobName);
+
+			return blob;
 		}
 
-		private CloudTable GetTable(string tableName) {
+		public static void SaveBlob(string containerName, string blobName, Stream stream) {
+			var blob = GetBlobContainer(containerName).GetBlockBlobReference(blobName);
+			blob.UploadFromStream(stream);
+		}
+
+		public static void DeleteBlob(string containerName, string blobName) {
+			GetBlobContainer(containerName).GetBlockBlobReference(blobName).DeleteIfExists();
+		}
+
+		#endregion Blob Container
+
+		#region Tables
+
+		private static CloudTable GetTable(string tableName) {
 			var connectionString = CloudConfigurationManager.GetSetting("StorageConnectionString");
 			var cloudStorageAccount = CloudStorageAccount.Parse(connectionString);
 
@@ -55,29 +60,60 @@ namespace BibliotecaMusical.Services {
 			return cloudTable;
 		}
 
-		public void SaveUserToTable(UserModel user) {
-			user.CreatedDate = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
-			user.PartitionKey = user.Email.Substring(0, 2);
-			user.RowKey = user.Email;
-
-			var cloudTable = GetTable(USER_TABLE_NAME);
-			TableOperation insertOperation = TableOperation.InsertOrReplace(user);
+		public static void SaveRecordToTable(string tableName, ITableEntity model) {
+			var cloudTable = GetTable(tableName);
+			TableOperation insertOperation = TableOperation.InsertOrReplace(model);
 			cloudTable.Execute(insertOperation);
 		}
 
-		public bool CheckLoginUser(UserModel user) {
-			var cloudTable = GetTable(USER_TABLE_NAME);
-			var query = new TableQuery<UserModel>()
-				.Where(TableQuery.CombineFilters(
-					TableQuery.GenerateFilterCondition("Email", QueryComparisons.Equal, user.Email),
-					TableOperators.And,
-					TableQuery.GenerateFilterCondition("Password", QueryComparisons.Equal, user.Password)
-				));
-
+		public static IEnumerable<T> GetQueryResults<T>(string tableName, TableQuery<T> query) where T : TableEntity, new() {
+			var cloudTable = GetTable(tableName);
 			var queryResults = cloudTable.ExecuteQuery(query);
-			var userChecksOut = queryResults.Any();
 
-			return userChecksOut;
+			return queryResults;
 		}
+
+		#endregion Tables
+
+		#region Queues
+
+		private static CloudQueue GetQueue(string queueName) {
+			var connectionString = CloudConfigurationManager.GetSetting("StorageConnectionString");
+			var cloudStorageAccount = CloudStorageAccount.Parse(connectionString);
+
+			var cloudQueueClient = cloudStorageAccount.CreateCloudQueueClient();
+			var cloudQueue = cloudQueueClient.GetQueueReference(queueName);
+			cloudQueue.CreateIfNotExists();
+
+			return cloudQueue;
+		}
+
+		public static void SaveMessage(string queueName, string message) {
+			var cloudQueue = GetQueue(queueName);
+
+			var cloudQueueMessage = new CloudQueueMessage(message);
+			cloudQueue.AddMessage(cloudQueueMessage);
+		}
+
+		public static List<string> GetMessageList(string queueName) {
+			var messages = new List<string>();
+
+			var cloudQueue = GetQueue(queueName);
+			cloudQueue.FetchAttributes();
+			var amount = cloudQueue.ApproximateMessageCount;
+
+			if (amount.HasValue && amount.Value > 0) {
+				amount = amount <= 32 ? amount : 32;
+				messages = cloudQueue
+					.GetMessages(amount.Value, TimeSpan.FromSeconds(1))
+					.OrderByDescending(m => m.InsertionTime)
+					.Select(m => m.AsString)
+					.ToList();
+			}
+
+			return messages;
+		}
+
+		#endregion Queues
 	}
 }

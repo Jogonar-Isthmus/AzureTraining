@@ -6,83 +6,40 @@ using BibliotecaMusical.Services;
 namespace BibliotecaMusical.Controllers {
 	[Authorize]
 	public class LibraryController : Controller {
-		private AzureService _azureService;
-
-		public LibraryController() {
-			_azureService = new AzureService();
-		}
-
-		// GET: Library
-		public ActionResult Index() {
-			var blobs = _azureService.GetFileList();
-			return View(blobs);
+		// GET: Library/Files
+		public ActionResult Files() {
+			var files = LibraryService.GetFileList();
+			return View(files);
 		}
 
 		// POST: Library/SaveFile
 		[HttpPost]
 		public ActionResult SaveFile(HttpPostedFileBase file) {
+			var userEmail = System.Web.HttpContext.Current.User.Identity.Name;
+
 			if (file != null && file.ContentLength > 0) {
 				var fileName = Path.GetFileName(file.FileName);
-				_azureService.SaveFileToBlob(fileName, file.InputStream);
+				LibraryService.SaveFile(fileName, file.InputStream, userEmail);
 			}
 
-			return RedirectToAction("Index");
+			return RedirectToAction("Files");
+		}
+		
+		// GET: Library/Delete/<fileName>
+		[HttpGet]
+		public ActionResult Delete(string fileName) {
+			var userEmail = System.Web.HttpContext.Current.User.Identity.Name;
+
+			LibraryService.DeleteFile(fileName, userEmail);
+
+			return RedirectToAction("Files");
 		}
 
-		// GET: Library/Details/5
-		public ActionResult Details(int id) {
-			return View();
-		}
+		// GET: Library/Stream/<fileName>
+		public ActionResult Stream(string fileName) {
+			byte[] file = LibraryService.GetFileData(fileName);
 
-		// GET: Library/Create
-		public ActionResult Create() {
-			return View();
-		}
-
-		// POST: Library/Create
-		[HttpPost]
-		public ActionResult Create(FormCollection collection) {
-			try {
-				// TODO: Add insert logic here
-
-				return RedirectToAction("Index");
-			} catch {
-				return View();
-			}
-		}
-
-		// GET: Library/Edit/5
-		public ActionResult Edit(int id) {
-			return View();
-		}
-
-		// POST: Library/Edit/5
-		[HttpPost]
-		public ActionResult Edit(int id, FormCollection collection) {
-			try {
-				// TODO: Add update logic here
-
-				return RedirectToAction("Index");
-			} catch {
-				return View();
-			}
-		}
-
-		// GET: Library/Delete/5
-		public ActionResult Delete(int id) {
-			return View();
-		}
-
-		// POST: Library/Delete/5
-		[HttpPost]
-		public ActionResult Delete(int id, FormCollection collection) {
-			try {
-				// TODO: Add delete logic here
-
-				return RedirectToAction("Index");
-			} catch {
-				return View();
-			}
+			return File(file, "audio/mpeg");
 		}
 	}
 }

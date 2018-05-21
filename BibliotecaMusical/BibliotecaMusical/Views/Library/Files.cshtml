@@ -6,7 +6,7 @@
 
 <h2>List of Files</h2>
 
-<form method="post" action="Library/SaveFile" enctype="multipart/form-data">
+<form method="post" action="SaveFile" enctype="multipart/form-data">
 	<div class="form-group">
 		<input type="file" name="file" />
 	</div>
@@ -31,9 +31,12 @@
 					<td>@file.Name</td>
 					<td>@file.Size</td>
 					<td>
-						<button class="btn btn-danger" type="button" id="deleteFile">
+						<a class="btn btn-primary" href="@Url.Action("Stream", "Library", new { fileName = file.Name })">
+							<i class="fas fa-play"></i> Play
+						</a>
+						<a class="btn btn-danger" href="@Url.Action("Delete", "Library", new { fileName = file.Name })">
 							<i class="fas fa-trash-alt"></i> Delete
-						</button>
+						</a>
 					</td>
 				</tr>
 			}

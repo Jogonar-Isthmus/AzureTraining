@@ -12,13 +12,10 @@ using Microsoft.Owin.Security;
 namespace BibliotecaMusical.Controllers {
 	[Authorize]
 	public class AccountController : Controller {
-		private AzureService _azureService;
-
 		private ApplicationSignInManager _signInManager;
 		private ApplicationUserManager _userManager;
 
 		public AccountController() {
-			_azureService = new AzureService();
 		}
 
 		public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager) {
@@ -59,13 +56,19 @@ namespace BibliotecaMusical.Controllers {
 		[ValidateAntiForgeryToken]
 		public ActionResult Login(LoginViewModel model, string returnUrl) {
 			// Check if user exists and password matches
-			var userChecksOut = _azureService.CheckLoginUser(new UserModel {
+			var userModel = new UserModel {
 				Email = model.Email,
 				Password = model.Password
-			});
+			};
+			var userChecksOut = UserService.CheckLoginUser(userModel);
 
 			if (userChecksOut) {
 				FormsAuthentication.SetAuthCookie(model.Email, false);
+
+				var user = UserService.GetUser(model.Email);
+				user.Status = "Active";
+				UserService.SaveUser(user);
+
 				return RedirectToAction("Index", "Home");
 			} else {
 				ViewBag.Message = "Login not found.";
@@ -125,10 +128,12 @@ namespace BibliotecaMusical.Controllers {
 		[ValidateAntiForgeryToken]
 		public ActionResult Register(RegisterViewModel model) {
 			if (ModelState.IsValid) {
-				_azureService.SaveUserToTable(new UserModel {
+				var userModel = new UserModel {
 					Email = model.Email,
-					Password = model.Password
-				});
+					Password = model.Password,
+					Status = "Inactive"
+				};
+				UserService.SaveUser(userModel);
 
 				return RedirectToAction("Index", "Home");
 			}
@@ -328,6 +333,11 @@ namespace BibliotecaMusical.Controllers {
 		[ValidateAntiForgeryToken]
 		public ActionResult LogOff() {
 			FormsAuthentication.SignOut();
+			
+			var user = UserService.GetUser(System.Web.HttpContext.Current.User.Identity.Name);
+			user.Status = "Inactive";
+			UserService.SaveUser(user);
+
 			return RedirectToAction("Index", "Home");
 		}
 
