@@ -44,7 +44,7 @@ namespace BibliotecaMusical.Services {
 
 			var userActionModel = new UserActionModel {
 				Email = userEmail,
-				Description = $"User [{userEmail}] deleted the file [{fileName}] to the Library."
+				Description = $"User [{userEmail}] deleted the file [{fileName}] from the Library."
 			};
 			UserActionService.SaveUserAction(userActionModel);
 		}
