@@ -1,8 +1,29 @@
-﻿@model IList<BibliotecaMusical.Models.BlobModel>
+﻿@model IList<BibliotecaMusical.Models.FileModel>
 
 @{
 	ViewBag.Title = "Library";
 }
+
+<script type="text/javascript">
+	function playFile(id, url) {
+		var buttonElement = $('#btn_' + id);
+		buttonElement.hide();
+
+		var sourceElement = $('#src_' + id);
+		sourceElement.attr("src", url);
+
+		var audioElement = $('#a_' + id);
+		audioElement.show();
+		audioElement[0].pause();
+		audioElement[0].load();
+		audioElement[0].oncanplaythrough = audioElement[0].play();
+
+		//var audio = document.querySelector('#a_' + id);
+		//audio.src = url;
+		//audio.load();
+		//audio.play();
+	}
+</script>
 
 <h2>List of Files</h2>
 
@@ -22,7 +43,7 @@
 			<tr>
 				<th>Name</th>
 				<th>Size</th>
-				<th>Action</th>
+				<th colspan="2">Actions</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -31,9 +52,14 @@
 					<td>@file.Name</td>
 					<td>@file.Size</td>
 					<td>
-						<a class="btn btn-primary" href="@Url.Action("Stream", "Library", new { fileName = file.Name })">
+						<a class="btn btn-primary" id="@("btn_" + file.Id)" href="javascript:void(0);" onclick="playFile('@file.Id', '@Url.Action("Stream", "Library", new { fileName = file.Name })');">
 							<i class="fas fa-play"></i> Play
 						</a>
+						<audio id="@("a_" + file.Id)" controls="controls" style="display:none;">
+							<source id="@("src_" + file.Id)" src="" type="audio/mp3" />
+						</audio>
+					</td>
+					<td>
 						<a class="btn btn-danger" href="@Url.Action("Delete", "Library", new { fileName = file.Name })">
 							<i class="fas fa-trash-alt"></i> Delete
 						</a>

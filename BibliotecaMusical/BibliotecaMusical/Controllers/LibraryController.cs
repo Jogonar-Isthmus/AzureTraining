@@ -39,7 +39,7 @@ namespace BibliotecaMusical.Controllers {
 		public ActionResult Stream(string fileName) {
 			byte[] file = LibraryService.GetFileData(fileName);
 
-			return File(file, "audio/mpeg");
+			return File(file, "audio/mp3");
 		}
 	}
 }

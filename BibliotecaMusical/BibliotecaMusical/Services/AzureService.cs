@@ -32,6 +32,7 @@ namespace BibliotecaMusical.Services {
 
 		public static CloudBlockBlob GetBlob(string containerName, string blobName) {
 			var blob = GetBlobContainer(containerName).GetBlockBlobReference(blobName);
+			blob.FetchAttributes();
 
 			return blob;
 		}

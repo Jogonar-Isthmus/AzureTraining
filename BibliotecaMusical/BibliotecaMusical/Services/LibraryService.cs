@@ -19,9 +19,10 @@ namespace BibliotecaMusical.Services {
 			UserActionService.SaveUserAction(userActionModel);
 		}
 
-		public static List<BlobModel> GetFileList() {
+		public static List<FileModel> GetFileList() {
 			var fileList = AzureService.GetBlobList(CONTAINER_NAME)
-				.Select(b => new BlobModel {
+				.Select(b => new FileModel {
+					Id = Guid.NewGuid(),
 					Name = b.Name,
 					Size = Convert.ToDecimal((double)b.Properties.Length / 1024 / 1024).ToString("#,##0.00")
 				})
@@ -31,8 +32,9 @@ namespace BibliotecaMusical.Services {
 		}
 
 		public static byte[] GetFileData(string fileName) {
-			byte[] fileData = null;
 			var file = AzureService.GetBlob(CONTAINER_NAME, fileName);
+
+			byte[] fileData = new byte[file.Properties.Length];
 			file.DownloadToByteArray(fileData, 0);
 
 			return fileData;
