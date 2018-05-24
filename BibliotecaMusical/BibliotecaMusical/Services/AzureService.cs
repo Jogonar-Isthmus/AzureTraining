@@ -18,6 +18,7 @@ namespace BibliotecaMusical.Services {
 
 			var cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
 			var cloudBlobContainer = cloudBlobClient.GetContainerReference(containerName);
+			cloudBlobContainer.CreateIfNotExists();
 
 			return cloudBlobContainer;
 		}

@@ -113,7 +113,6 @@ C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\System.W
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.AspNet.Identity.Core.xml
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.AspNet.Identity.Owin.xml
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.AspNet.Identity.EntityFramework.xml
-C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\obj\Debug\BibliotecaMusical.csprojResolveAssemblyReference.cache
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\obj\Debug\BibliotecaMusical.dll
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\obj\Debug\BibliotecaMusical.pdb
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.Azure.KeyVault.Core.dll
@@ -122,3 +121,6 @@ C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsof
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.WindowsAzure.Configuration.xml
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.WindowsAzure.Storage.pdb
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.WindowsAzure.Storage.xml
+C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\obj\Debug\BibliotecaMusical.csprojAssemblyReference.cache
+C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\obj\Debug\BibliotecaMusical.csproj.CoreCompileInputs.cache
+C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\obj\Debug\BibliotecaMusical.csproj.CopyComplete
