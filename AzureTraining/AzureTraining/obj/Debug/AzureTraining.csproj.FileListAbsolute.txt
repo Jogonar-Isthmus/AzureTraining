@@ -87,7 +87,6 @@ C:\Sources\IsthmusTraining\AzureTraining\AzureTraining\bin\Microsoft.Owin.Securi
 C:\Sources\IsthmusTraining\AzureTraining\AzureTraining\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Sources\IsthmusTraining\AzureTraining\AzureTraining\obj\Debug\AzureTraining.dll
 C:\Sources\IsthmusTraining\AzureTraining\AzureTraining\obj\Debug\AzureTraining.pdb
-C:\Sources\GitHub\AzureTraining\AzureTraining\AzureTraining\obj\Debug\AzureTraining.csprojResolveAssemblyReference.cache
 C:\Sources\GitHub\AzureTraining\AzureTraining\AzureTraining\bin\ApplicationInsights.config
 C:\Sources\GitHub\AzureTraining\AzureTraining\AzureTraining\bin\AzureTraining.dll.config
 C:\Sources\GitHub\AzureTraining\AzureTraining\AzureTraining\bin\AzureTraining.dll
@@ -211,3 +210,6 @@ C:\Sources\GitHub\AzureTraining\AzureTraining\AzureTraining\bin\Microsoft.AspNet
 C:\Sources\GitHub\AzureTraining\AzureTraining\AzureTraining\bin\Microsoft.AspNet.Identity.EntityFramework.xml
 C:\Sources\GitHub\AzureTraining\AzureTraining\AzureTraining\obj\Debug\AzureTraining.dll
 C:\Sources\GitHub\AzureTraining\AzureTraining\AzureTraining\obj\Debug\AzureTraining.pdb
+C:\Sources\GitHub\AzureTraining\AzureTraining\AzureTraining\obj\Debug\AzureTraining.csprojAssemblyReference.cache
+C:\Sources\GitHub\AzureTraining\AzureTraining\AzureTraining\obj\Debug\AzureTraining.csproj.CoreCompileInputs.cache
+C:\Sources\GitHub\AzureTraining\AzureTraining\AzureTraining\obj\Debug\AzureTraining.csproj.CopyComplete

@@ -21,6 +21,7 @@ namespace AzureTraining.Services {
 
 			var cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
 			var cloudBlobContainer = cloudBlobClient.GetContainerReference(CONTAINER_NAME);
+			cloudBlobContainer.CreateIfNotExists();
 
 			return cloudBlobContainer;
 		}

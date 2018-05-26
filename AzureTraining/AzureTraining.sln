@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2018
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureTraining", "AzureTraining\AzureTraining.csproj", "{18AFDB2F-C425-4528-B128-2A058F09955A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureTraining.WebJob", "AzureTraining.WebJob\AzureTraining.WebJob.csproj", "{062FA685-0DCB-4B54-9425-36D0F9B2D8FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +17,15 @@ Global
 		{18AFDB2F-C425-4528-B128-2A058F09955A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18AFDB2F-C425-4528-B128-2A058F09955A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18AFDB2F-C425-4528-B128-2A058F09955A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{062FA685-0DCB-4B54-9425-36D0F9B2D8FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{062FA685-0DCB-4B54-9425-36D0F9B2D8FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{062FA685-0DCB-4B54-9425-36D0F9B2D8FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{062FA685-0DCB-4B54-9425-36D0F9B2D8FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {158E9FA8-510D-4A04-8441-357863D16792}
 	EndGlobalSection
 EndGlobal
