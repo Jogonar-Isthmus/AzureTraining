@@ -62,7 +62,6 @@ C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsof
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.AspNet.Identity.Owin.dll
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.AspNet.TelemetryCorrelation.dll
-C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.Owin.dll
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.Owin.Host.SystemWeb.dll
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.Owin.Security.Cookies.dll
@@ -73,9 +72,10 @@ C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsof
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.Owin.Security.OAuth.dll
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.Owin.Security.Twitter.dll
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.Web.Infrastructure.dll
+C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.WindowsAzure.Configuration.dll
+C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.WindowsAzure.Storage.dll
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Newtonsoft.Json.dll
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Owin.dll
-C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\System.Diagnostics.DiagnosticSource.dll
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\System.Web.Helpers.dll
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\System.Web.Mvc.dll
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\System.Web.Optimization.dll
@@ -91,7 +91,6 @@ C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsof
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.AI.Web.xml
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.AI.WindowsServer.xml
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.AspNet.TelemetryCorrelation.xml
-C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.Owin.xml
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.Owin.Host.SystemWeb.xml
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.Owin.Security.xml
@@ -101,8 +100,10 @@ C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsof
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.WindowsAzure.Configuration.xml
+C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.WindowsAzure.Storage.pdb
+C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.WindowsAzure.Storage.xml
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Newtonsoft.Json.xml
-C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\System.Diagnostics.DiagnosticSource.xml
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\System.Web.Helpers.xml
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\System.Web.Mvc.xml
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\System.Web.Razor.xml
@@ -113,14 +114,8 @@ C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\System.W
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.AspNet.Identity.Core.xml
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.AspNet.Identity.Owin.xml
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.AspNet.Identity.EntityFramework.xml
-C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\obj\Debug\BibliotecaMusical.dll
-C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\obj\Debug\BibliotecaMusical.pdb
-C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.Azure.KeyVault.Core.dll
-C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.WindowsAzure.Configuration.dll
-C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.WindowsAzure.Storage.dll
-C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.WindowsAzure.Configuration.xml
-C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.WindowsAzure.Storage.pdb
-C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.WindowsAzure.Storage.xml
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\obj\Debug\BibliotecaMusical.csprojAssemblyReference.cache
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\obj\Debug\BibliotecaMusical.csproj.CoreCompileInputs.cache
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\obj\Debug\BibliotecaMusical.csproj.CopyComplete
+C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\obj\Debug\BibliotecaMusical.dll
+C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\obj\Debug\BibliotecaMusical.pdb
