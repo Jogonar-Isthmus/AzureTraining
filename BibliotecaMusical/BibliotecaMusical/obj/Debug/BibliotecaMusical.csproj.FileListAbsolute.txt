@@ -119,3 +119,7 @@ C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\obj\Debug\Bi
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\obj\Debug\BibliotecaMusical.csproj.CopyComplete
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\obj\Debug\BibliotecaMusical.dll
 C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\obj\Debug\BibliotecaMusical.pdb
+C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\System.Diagnostics.DiagnosticSource.dll
+C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Sources\GitHub\AzureTraining\BibliotecaMusical\BibliotecaMusical\bin\System.Diagnostics.DiagnosticSource.xml
