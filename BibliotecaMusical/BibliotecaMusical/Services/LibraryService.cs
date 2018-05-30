@@ -11,12 +11,6 @@ namespace BibliotecaMusical.Services {
 
 		public static void SaveFile(string fileName, Stream stream, string userEmail) {
 			AzureService.SaveBlob(CONTAINER_NAME, fileName, stream);
-
-			var userActionModel = new UserActionModel {
-				Email = userEmail,
-				Description = $"User [{userEmail}] added the file [{fileName}] to the Library."
-			};
-			UserActionService.SaveUserAction(userActionModel);
 		}
 
 		public static List<FileModel> GetFileList() {
@@ -41,12 +35,13 @@ namespace BibliotecaMusical.Services {
 		}
 
 		public static void DeleteFile(string fileName, string userEmail) {
+			// Delete action will be handled on the the WebJob
 			//AzureService.DeleteBlob(CONTAINER_NAME, fileName);
 			AzureService.SaveMessage(DELETE_QUEUE_NAME, fileName);
 
 			var userActionModel = new UserActionModel {
 				Email = userEmail,
-				Description = $"User [{userEmail}] deleted the file [{fileName}] from the Library."
+				Description = $"User [{userEmail}] requested for the file [{fileName}] to be deleted from the Library."
 			};
 			UserActionService.SaveUserAction(userActionModel);
 		}
